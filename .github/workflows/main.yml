@@ -25,25 +25,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create custom directory
-        run: |
-          set -ex
-          echo ${{ env.LAZYLLM_MOONSHOTAI_API_KEY }}
-          echo ${{ env.CI_PATH }}
-          mkdir -p ${{ env.CI_PATH }}
-
-      - name: Clean custom directory
-        run: |
-          set -ex
-          if [ -d "${{ env.CI_PATH }}" ]; then
-            rm -rf ${{ env.CI_PATH }}/*
-          fi
-
-      - name: Move code to custom directory
-        run: |
-          set -ex
-          mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
-
   ChargeTests:
     runs-on: ubuntu-latest
     needs: [ Clone ]
@@ -52,7 +33,7 @@ jobs:
     steps:
       - name: RunTests
         run: |
+          env
           echo $LAZYLLM_MOONSHOTAI_API_KEY
-          cd ${{ env.CI_PATH }}
           export PYTHONPATH=$PWD:$PYTHONPATH
 #          python -m pytest tests/charge_tests/
