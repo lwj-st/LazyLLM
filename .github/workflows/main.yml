@@ -9,7 +9,6 @@ on:
       - main
     paths-ignore:
       - "**.md"
-      - ".git*"
 env:
   CI_PATH: '/home/mnt/platform_ci/GitHub/${{ github.repository }}/${GITHUB_RUN_NUMBER}'
   LAZYLLM_MOONSHOTAI_API_KEY: ${{ secrets.LAZYLLM_MOONSHOTAI_API_KEY2 }}
