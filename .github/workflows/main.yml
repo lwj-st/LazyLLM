@@ -22,6 +22,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+    steps:
+      - name: Rs
+        run: |
+          echo 123456
 
   ChargeTests:
     runs-on: ubuntu-latest
