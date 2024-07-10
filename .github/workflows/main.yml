@@ -31,7 +31,6 @@ jobs:
     steps:
       - name: RunTests
         run: |
-          env
           echo $LAZYLLM_MOONSHOTAI_API_KEY
           export PYTHONPATH=$PWD:$PYTHONPATH
           python -m pytest tests/charge_tests/
