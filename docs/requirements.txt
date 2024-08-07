@@ -30,3 +30,7 @@ nltk
 tiktoken
 llama_index
 redis
+funasr
+transformers
+ChatTTS
+chromadb
