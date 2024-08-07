@@ -38,9 +38,6 @@ jobs:
         run: |
           mkdocs serve -a localhost:1369 > mkdocs.log 2>&1 &
 
-      - name: Wait for server to start
-        run: sleep 10
-
       - name: Check if MkDocs server is running
         run: |
           if ! curl --silent --fail http://localhost:1369; then
