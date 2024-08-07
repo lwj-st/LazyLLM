@@ -29,6 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          set -e
           pip install -r requirements.txt
           pip install -r docs/requirements.txt
           python docs/add_docstrings.py
@@ -37,6 +38,9 @@ jobs:
         id: start_server
         run: |
           mkdocs serve -a localhost:1369 > mkdocs.log 2>&1 &
+
+      - name: Wait for server to start
+        run: sleep 100
 
       - name: Check if MkDocs server is running
         run: |
