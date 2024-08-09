@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - lwj/deploy_doc
   pull_request:
     branches:
       - main
