@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  build:
+  Win_Test:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -34,5 +34,4 @@ jobs:
       - name: Run tests
         run: |
           set -ex
-          export PYTHONPATH=$PWD:$PYTHONPATH
           python -m pytest -vx tests/basic_tests/
