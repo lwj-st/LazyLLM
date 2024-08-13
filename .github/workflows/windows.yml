@@ -33,5 +33,4 @@ jobs:
 
       - name: Run tests
         run: |
-          set -ex
           python -m pytest -vx tests/basic_tests/
