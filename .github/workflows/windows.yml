@@ -32,7 +32,12 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Set PYTHONPATH
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "$PWD;$env:PYTHONPATH"
+          Write-Output "PYTHONPATH: $env:PYTHONPATH"
+
       - name: Run tests
         run: |
-          set PYTHONPATH=%cd%;%PYTHONPATH%
           python -m pytest -vx tests/basic_tests/
