@@ -34,4 +34,5 @@ jobs:
 
       - name: Run tests
         run: |
+          set PYTHONPATH=%cd%;%PYTHONPATH%
           python -m pytest -vx tests/basic_tests/
