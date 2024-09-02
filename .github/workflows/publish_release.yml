@@ -46,7 +46,10 @@ jobs:
       - name: Test import
         working-directory: ${{ vars.RUNNER_TEMP }}
         shell: bash
-        run: python -c "import lazyllm" && cp LazyLLM-Env/poetry.lock .
+        run: |
+          pwd
+          ls
+          python -c "import lazyllm" && cp LazyLLM-Env/poetry.lock .
       - name: Check PyPI for existing version
         id: pypi_check
         run: |
