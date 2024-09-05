@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - lwj/skip_test
   pull_request:
     branches:
       - main
+      - lwj/skip_test
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -34,7 +36,7 @@ jobs:
         run: |
           source venv/bin/activate
           flake8 .
-          
+
       - name: test
         run: |
           pip install pytest
