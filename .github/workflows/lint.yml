@@ -34,6 +34,15 @@ jobs:
         run: |
           source venv/bin/activate
           flake8 .
+          
+      - name: test
+        run: |
+          pip install pytest
+          python -m pytest -v tests/lwj/
+      
+      - name: Retry failed tests
+        if: failure() # Only run if the previous step fails
+        run: python -m pytest --last-failed -vx tests/lwj/
 
   build:
     runs-on: ubuntu-latest
