@@ -19,6 +19,7 @@ env:
 
 jobs:
   Clone:
+    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.pull_request.title, 'skip ci')"
     runs-on: my_image
     steps:
       - name: Checkout code
@@ -43,7 +44,7 @@ jobs:
           mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
 
   test:
-    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]')"
+    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.pull_request.title, 'skip ci')"
     runs-on: my_image
     needs: [Clone]
     steps:
