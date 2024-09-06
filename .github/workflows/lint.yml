@@ -42,7 +42,7 @@ jobs:
       - name: Move code to custom directory
         run: |
           set -ex
-          echo 5
+          echo 6
           mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
 
   test:
