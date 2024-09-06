@@ -44,6 +44,7 @@ jobs:
         run: |
           set -ex
           echo 9
+          echo "Event name: ${{ github.event_name }}"
           echo "${{ github.event.pull_request.title }}"
           mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
 
