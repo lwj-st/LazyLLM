@@ -21,9 +21,6 @@ jobs:
   Clone:
     if: |
       !contains(github.event.head_commit.message, '[skip ci]')
-      && !contains(github.event.head_commit.message, '[ci skip]')
-      && !contains(github.event.head_commit.message, 'skip ci')
-      && !contains(github.event.head_commit.message, 'ci skip')
     runs-on: my_image
     steps:
       - name: Checkout code
@@ -45,7 +42,7 @@ jobs:
       - name: Move code to custom directory
         run: |
           set -ex
-          echo 3
+          echo 4
           mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
 
   test:
