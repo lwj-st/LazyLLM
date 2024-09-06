@@ -21,6 +21,7 @@ jobs:
   Clone:
     if: |
       !contains(github.event.head_commit.message, '[skip ci]')
+      && !contains(github.event.pull_request.title, '[skip ci]')
     runs-on: my_image
     steps:
       - name: Checkout code
