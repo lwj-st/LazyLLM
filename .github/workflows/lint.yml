@@ -14,18 +14,41 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  CI_PATH: '/root/actions-runner/${{ github.repository }}/${GITHUB_RUN_NUMBER}'
+
 jobs:
-  lint:
+  Clone:
     runs-on: my_image
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create custom directory
+        run: |
+          set -ex
+          echo ${{ env.CI_PATH }}
+          mkdir -p ${{ env.CI_PATH }}
+
+      - name: Clean custom directory
+        run: |
+          set -ex
+          if [ -d "${{ env.CI_PATH }}" ]; then
+            rm -rf ${{ env.CI_PATH }}/*
+          fi
+
+      - name: Move code to custom directory
+        run: |
+          set -ex
+          mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
+
   test:
     runs-on: my_image
+    needs: [Clone]
     steps:
       - name: test
         run: |
+          cd ${{ env.CI_PATH }}
           pip install pytest
           python -m pytest --lf --last-failed-no-failures=all -v tests/lwj/ 
       
