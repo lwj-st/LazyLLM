@@ -26,6 +26,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Set up python 3.10.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.10.9
 
       - name: Create custom directory
         run: |
@@ -47,7 +51,10 @@ jobs:
           echo "Event name: ${{ github.event_name }}"
           echo "${{ github.event.pull_request.title }}"
           mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
-
+          pip install lazyllm
+          pip list
+          pip list|wc -l
+      
   test:
     runs-on: my_image
     needs: [Clone]
