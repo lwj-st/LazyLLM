@@ -31,26 +31,26 @@ jobs:
         with:
           python-version: 3.10.9
 
-      - name: Create custom directory
-        run: |
-          set -ex
-          echo ${{ env.CI_PATH }}
-          mkdir -p ${{ env.CI_PATH }}
+      # - name: Create custom directory
+      #   run: |
+      #     set -ex
+      #     echo ${{ env.CI_PATH }}
+      #     mkdir -p ${{ env.CI_PATH }}
 
-      - name: Clean custom directory
-        run: |
-          set -ex
-          if [ -d "${{ env.CI_PATH }}" ]; then
-            rm -rf ${{ env.CI_PATH }}/*
-          fi
+      # - name: Clean custom directory
+      #   run: |
+      #     set -ex
+      #     if [ -d "${{ env.CI_PATH }}" ]; then
+      #       rm -rf ${{ env.CI_PATH }}/*
+      #     fi
 
       - name: Move code to custom directory
         run: |
           set -ex
-          echo 9
-          echo "Event name: ${{ github.event_name }}"
-          echo "${{ github.event.pull_request.title }}"
-          mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
+          # echo 9
+          # echo "Event name: ${{ github.event_name }}"
+          # echo "${{ github.event.pull_request.title }}"
+          # mv $GITHUB_WORKSPACE/* ${{ env.CI_PATH }}/
           pip install lazyllm
           pip list
           pip list|wc -l
