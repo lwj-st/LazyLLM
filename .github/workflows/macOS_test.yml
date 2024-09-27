@@ -49,6 +49,7 @@ jobs:
         run: |
           poetry build
           echo ${{ github.ref }}
+          echo ${{ github.event.pull_request.id }}
 
       - name: List dist directory
         run: ls dist
