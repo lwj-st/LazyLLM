@@ -22,10 +22,6 @@ jobs:
   macos-basic_tests:
     runs-on: macos-13
 
-    strategy:
-      matrix:
-        python-version: ['3.10']
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,10 +31,10 @@ jobs:
       - name: Copy poetry.lock to root directory
         run: cp LazyLLM-Env/poetry.lock .
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.10
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
