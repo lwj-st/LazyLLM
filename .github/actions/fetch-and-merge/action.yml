@@ -7,6 +7,7 @@ runs:
   using: 'composite'
   steps:
     - name: Fetch PR source branch
+      shell: bash
       if: ${{ github.event_name == 'pull_request_target' }}
       run: |
         if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
@@ -19,6 +20,7 @@ runs:
         fi
 
     - name: Merge PR branch into main
+      shell: bash
       if: ${{ github.event_name == 'pull_request_target' }}
       run: |
         git merge --no-ff pr_branch
