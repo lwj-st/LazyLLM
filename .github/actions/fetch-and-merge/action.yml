@@ -1,0 +1,31 @@
+name: 'Fetch and Merge PR'
+description: 'Fetch PR source branch and merge it into the main branch'
+author: 'Your Name'
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+        fetch-depth: 0
+
+    - name: Fetch PR source branch
+      if: ${{ github.event_name == 'pull_request_target' }}
+      run: |
+        if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+          echo "Cloning external repository"
+          git remote add external_repo ${{ github.event.pull_request.head.repo.clone_url }}
+          git fetch external_repo ${{ github.event.pull_request.head.ref }}:pr_branch
+        else
+          echo "Fetching PR branch from the same repository"
+          git fetch origin ${{ github.event.pull_request.head.ref }}:pr_branch
+        fi
+
+    - name: Merge PR branch into main
+      if: ${{ github.event_name == 'pull_request_target' }}
+      run: |
+        git merge --no-ff pr_branch
+        git submodule update --init
