@@ -6,12 +6,6 @@ author: 'Your Name'
 runs:
   using: 'composite'
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        submodules: true
-        fetch-depth: 0
-
     - name: Fetch PR source branch
       if: ${{ github.event_name == 'pull_request_target' }}
       run: |
