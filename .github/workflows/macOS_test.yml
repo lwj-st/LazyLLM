@@ -29,9 +29,9 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
-          
+
       - name: Use custom Fetch 和 Merge Action
-        uses: ./.github/actions/fetch-and-merge
+        uses: .github/actions/fetch-and-merge
           
       - name: Copy poetry.lock to root directory
         run: |
@@ -76,7 +76,7 @@ jobs:
 
     steps:
       - name: Use custom Fetch 和 Merge Action
-        uses: ./.github/actions/fetch-and-merge
+        uses: .github/actions/fetch-and-merge
           
       - name: Copy poetry.lock to root directory
         run: |
