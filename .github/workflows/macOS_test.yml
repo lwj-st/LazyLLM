@@ -84,9 +84,12 @@ jobs:
          git clone https://$GITHUB_TOKEN@github.com/LazyAGI/LazyLLM-Data.git /tmp/lazyllm/data
          pip install -r tests/requirements.txt
          export LAZYLLM_DATA_PATH=/tmp/lazyllm/data
+         df -h
          python -m pytest -v -s  tests/basic_tests/test_module.py
          ls /Users/runner/.lazyllm/model/internlm2-chat-7b
+         df -h
          python -m pytest -v -s  tests/basic_tests/test_module.py
+         df -h
         timeout-minutes: 30
         env :
          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}       
