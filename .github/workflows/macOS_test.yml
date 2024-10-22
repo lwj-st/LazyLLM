@@ -66,6 +66,9 @@ jobs:
       - name: Download model
         run: |
           pip install modelscope
+          mkdir -p /Users/runner/.lazyllm/model
+          mkdir -p /Users/runner/.cache/modelscope/hub/Shanghai_AI_Laboratory
+          ln -s /Users/runner/.cache/modelscope/hub/Shanghai_AI_Laboratory /Users/runner/.lazyllm/model/Shanghai_AI_Laboratory
           modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b &
 
       - name: Install Poetry
@@ -89,8 +92,6 @@ jobs:
          git clone https://$GITHUB_TOKEN@github.com/LazyAGI/LazyLLM-Data.git /tmp/lazyllm/data
          pip install -r tests/requirements.txt
          export LAZYLLM_DATA_PATH=/tmp/lazyllm/data
-         mkdir -p /Users/runner/.lazyllm/model/Shanghai_AI_Laboratory
-         ln -s /Users/runner/.cache/modelscope/hub/Shanghai_AI_Laboratory /Users/runner/.lazyllm/model/Shanghai_AI_Laboratory
          df -h
          ls /Users/runner/.lazyllm/model/Shanghai_AI_Laboratory
          sleep 600
