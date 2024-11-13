@@ -40,13 +40,13 @@ jobs:
         shell: cmd
         run: |
           mkdir C:\Users\runneradmin\.lazyllm
-          mklink /D C:\Users\runneradmin\.lazyllm C:\Users\runneradmin\.cache\modelscope\hub
+          # mklink /D C:\Users\runneradmin\.lazyllm C:\Users\runneradmin\.cache\modelscope\hub
           mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           
       - name: test command
         run: |
           cd /c/Users/runneradmin/.cache/modelscope/hub
-          echo { "config": "value" } > config.json
+          echo 123 > config.json
           whoami
           ls C:\Users\
           ls /c/Users/runneradmin/.lazyllm/model
