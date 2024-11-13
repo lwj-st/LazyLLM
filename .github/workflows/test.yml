@@ -37,8 +37,9 @@ jobs:
           # modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b
           
       - name: Create Symbolic Link
+        shell: cmd
         run: |
-          cmd /c mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
+          mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           
       - name: test command
         run: |
