@@ -27,14 +27,15 @@ jobs:
         run: |
           pip install modelscope pyyaml
           mkdir /c/Users/runneradmin/.lazyllm
+          ls /c/Users/runneradmin/.lazyllm
+          dir /c/Users/runneradmin/.lazyllm
           mkdir -p  /c/Users/runneradmin/.cache/modelscope/hub
           cmd /c mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
-          modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b
-          dir /c/Users/runneradmin/.lazyllm
-          dir /c/Users/runneradmin/.cache/modelscope/hub
+          # modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b
+
       - name: test command
         run: |
-          dir
+          dir /c/Users/runneradmin/.lazyllm
           whoami
           ls C:\Users\
           mkdir -p /c/Users/runneradmin/.cache/modelscope/hub
