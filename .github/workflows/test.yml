@@ -36,11 +36,7 @@ jobs:
       - name: test command
         shell: cmd
         run: |
-          cd  C:\Users\runneradmin\.lazyllm
-          echo 123 > config.json
-          echo "This is an example file" > example.txt
-          cd 
-          dir
-          ls C:\Users\runneradmin\.lazyllm
-          cd C:\Users\runneradmin\.lazyllm
+          echo 123 > C:\Users\runneradmin\.lazyllm\model\config.json
+          echo "This is an example file" > C:\Users\runneradmin\.lazyllm\model\example.txt
+          dir C:\Users\runneradmin\.cache\modelscope\hub
           dir
