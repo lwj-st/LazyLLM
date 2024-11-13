@@ -35,6 +35,7 @@ jobs:
           cd LazyLLM-Env && git branch
           cd ..
           copy LazyLLM-Env\\poetry.lock .
+          dir
 
       - name: Set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
