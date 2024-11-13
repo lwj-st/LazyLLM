@@ -36,9 +36,9 @@ jobs:
       - name: basic_tests
         shell: bash
         run: |
-          mkdir /a/LazyLLM/data
-          git clone https://$GITHUB_TOKEN@github.com/LazyAGI/LazyLLM-Data.git /a/LazyLLM/data
-          export LAZYLLM_DATA_PATH=/a/LazyLLM/data
+          mkdir -p D:/a/LazyLLM/data
+          git clone https://$GITHUB_TOKEN@github.com/LazyAGI/LazyLLM-Data.git D:/a/LazyLLM/data
+          export LAZYLLM_DATA_PATH=D:/a/LazyLLM/data
         timeout-minutes: 30
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
