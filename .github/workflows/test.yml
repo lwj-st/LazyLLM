@@ -25,7 +25,7 @@ jobs:
 
       - name: Download model
         run: |
-          pip install modelscope yaml
+          pip install modelscope pyyaml
           mkdir /c/Users/runneradmin/.lazyllm
           mkdir -p  /c/Users/runneradmin/.cache/modelscope/hub
           cmd /c mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
