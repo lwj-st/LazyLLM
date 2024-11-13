@@ -40,14 +40,14 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Download model
-        shell: cmd
+        shell: bash
         run: |
           pip install modelscope pyyaml
-          mkdir C:\Users\runneradmin\.lazyllm
-          ls C:\Users\runneradmin\.lazyllm
-          mkdir C:\Users\runneradmin\.cache\modelscope\hub
-          mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
-          start /b modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b
+          mkdir C:/Users/runneradmin/.lazyllm
+          ls C:/Users/runneradmin/.lazyllm
+          mkdir -p C:/Users/runneradmin/.cache/modelscope/hub
+          ln -s  C:/Users/runneradmin/.cache/modelscope/hub C:/Users/runneradmin/.lazyllm/model
+          modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b &
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
