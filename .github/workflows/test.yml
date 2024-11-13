@@ -24,6 +24,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Download model
+        shell: cmd
         run: |
           pip install modelscope pyyaml
           mkdir C:\Users\runneradmin\.lazyllm
