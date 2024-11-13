@@ -34,8 +34,9 @@ jobs:
          
           
       - name: test command
+        shell: cmd
         run: |
-          cd C:\Users\runneradmin\.cache\modelscope\hub
+          cd  C:\Users\runneradmin\.cache\modelscope/hub
           echo 123 > config.json
           whoami
           ls C:\Users\
