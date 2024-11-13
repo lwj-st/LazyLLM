@@ -33,10 +33,12 @@ jobs:
           mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
          
           
-      - name: test command
-        shell: cmd
+      - name: basic_tests
+        shell: bash
         run: |
-          echo 123 > C:\Users\runneradmin\.lazyllm\model\config.json
-          echo "This is an example file" > C:\Users\runneradmin\.lazyllm\model\example.txt
-          dir C:\Users\runneradmin\.cache\modelscope\hub
-          dir
+          mkdir /a/LazyLLM/data
+          git clone https://$GITHUB_TOKEN@github.com/LazyAGI/LazyLLM-Data.git /a/LazyLLM/data
+          export LAZYLLM_DATA_PATH=/a/LazyLLM/data
+        timeout-minutes: 30
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
