@@ -26,12 +26,10 @@ jobs:
       - name: Download model
         run: |
           pip install modelscope pyyaml
-          mkdir /c/Users/runneradmin/.lazyllm
-          ls /c/Users/runneradmin/.lazyllm
-          echo 123
-          dir /c/Users/runneradmin/.lazyllm
-          echo 456
-          mkdir -p  /c/Users/runneradmin/.cache/modelscope/hub
+          mkdir C:\Users\runneradmin\.lazyllm
+          ls C:\Users\runneradmin\.lazyllm
+          mkdir -p  C:\Users\runneradmin\.cache\modelscope/hub
+          mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           #cmd /c mklink /d C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           # cmd /c mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           # modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b
@@ -39,11 +37,12 @@ jobs:
       - name: Create Symbolic Link
         shell: cmd
         run: |
-          mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
+          echo 12
+          # mklink /D C:\Users\runneradmin\.lazyllm\model C:\Users\runneradmin\.cache\modelscope\hub
           
       - name: test command
         run: |
-          cd /c/Users/runneradmin/.cache/modelscope/hub
+          cd C:\Users\runneradmin\.cache\modelscope\hub
           echo 123 > config.json
           whoami
           ls C:\Users\
