@@ -47,11 +47,10 @@ jobs:
       - name: Download model
         run: |
           pip install modelscope
-          mkdir C:\\Users\\runneradmin\\.lazyllm
-          md  C:\\Users\\runneradmin\\.cache\\modelscope\\hub
+          mkdir /c/Users/runneradmin/.lazyllm
+          mkdir -p  /c/Users/runneradmin/.cache/modelscope/hub
           mklink /D C:\\Users\\runneradmin\\.lazyllm\\model C:\\Users\\runneradmin\\.cache\\modelscope\\hub
           modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b &
-        shell: bash
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
