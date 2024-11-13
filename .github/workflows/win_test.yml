@@ -36,6 +36,8 @@ jobs:
           cd ..
           copy LazyLLM-Env\\poetry.lock .
           dir
+          whoami
+          ls C:\Users\
 
       - name: Set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -45,7 +47,7 @@ jobs:
       - name: Download model
         run: |
           pip install modelscope
-          mkdir C:\\Users\\runneradmin\\.lazyllm
+          mkdir C:\Users\\runneradmin\.lazyllm
           mkdir C:\\Users\\runneradmin\\.cache\\modelscope\\hub
           mklink /D C:\\Users\\runneradmin\\.lazyllm\\model C:\\Users\\runneradmin\\.cache\\modelscope\\hub
           modelscope download Shanghai_AI_Laboratory/internlm2-chat-7b &
