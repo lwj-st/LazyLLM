@@ -38,6 +38,9 @@ jobs:
         run: |
           cd  C:\Users\runneradmin\.cache\modelscope\hub
           echo 123 > config.json
-          whoami
-          ls C:\Users\
+          echo "This is an example file" > example.txt
+          cd 
+          dir
           ls C:\Users\runneradmin\.lazyllm\model
+          cd C:\Users\runneradmin\.lazyllm\model
+          dir
