@@ -30,6 +30,7 @@ jobs:
           fetch-depth: 0
           
       - name: Fetch PR source branch
+        shell: bash
         if: github.event_name == 'pull_request_target'
         run: |
           if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
@@ -43,6 +44,7 @@ jobs:
           fi
           
       - name: Merge PR branch into main
+        shell: bash
         if: github.event_name == 'pull_request_target'
         run: |
           git checkout main
@@ -117,6 +119,7 @@ jobs:
           fetch-depth: 0
 
       - name: Merge PR branch into main
+        shell: bash
         if: github.event_name == 'pull_request_target'
         run: |
           if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
@@ -130,8 +133,8 @@ jobs:
           fi
           
       - name: Merge PR branch into main
-        if: github.event_name == 'pull_request_target'
         shell: bash
+        if: github.event_name == 'pull_request_target'
         run: |
           git checkout main
           git merge --no-ff pr_branch 
