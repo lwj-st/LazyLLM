@@ -7,6 +7,7 @@ on:
   pull_request_target:
     branches:
       - main
+      - test_on_win_main
   workflow_dispatch:
 
 concurrency:
