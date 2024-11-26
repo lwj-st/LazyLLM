@@ -8,6 +8,8 @@ on:
     branches:
       - main
       - test_on_win_main
+    types:
+      - labeled
   workflow_dispatch:
 
 concurrency:
