@@ -1,12 +1,16 @@
 name: Lint And Build Package
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
+      - after_lint_test
   pull_request:
     branches:
-      - main
+      - after_lint_test
+    paths-ignore:
+      - "**.md"
+      - "docs/assets/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
