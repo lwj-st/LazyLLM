@@ -1,16 +1,20 @@
 name: Test on macOS 
 
 on:
-  push:
-    branches:
-      - main
-  pull_request_target:
-    branches:
-      - main
+  workflow_run:
+    workflows:
+      - Lint And Build Package
+    types:
+      - completed
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.event.pull_request.id || github.ref }}
+  group: |
+    ${{ github.workflow }}-${{ 
+      github.event_name == 'pull_request_target' && github.event.pull_request.id 
+      || github.event_name == 'pull_request' && github.event.pull_request.id
+      || github.ref_name 
+    }}
   cancel-in-progress: true
 
 env:
