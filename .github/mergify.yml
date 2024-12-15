@@ -1,10 +1,26 @@
 pull_request_rules:
   - name: Add label after CI passes
-    description: Automatically add the 'lint_pass' label after the CI workflow 'Lint And Build Package' passes.
     conditions:
-      # 条件：PR必须满足以下条件
       - check-success=lint
     actions:
       label:
         add:
           - lint_pass
+  - name: add label 'test_pass'
+    conditions:
+      - -label=waiting-approval
+      - and: &basic-pr
+          - -conflict
+          - -draft
+          - base=master
+          - -title~=(?i)\[wip\]
+      - or:
+          - check-success=lint
+      - or:
+          - check-success=build
+      - or:
+          - check-success=test
+    actions:
+      label:
+        add:
+          - test_pass
