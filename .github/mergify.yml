@@ -3,8 +3,8 @@ pull_request_rules:
     description: Automatically add the 'lint_pass' label after the CI workflow 'Lint And Build Package' passes.
     conditions:
       # 条件：PR必须满足以下条件
-      - check-success=Lint And Build Package  # CI 工作流名称必须通过
+      - check-success=Lint And Build Package
     actions:
       label:
         add:
-          - lint_pass  # 添加的标签名称
+          - lint_pass
