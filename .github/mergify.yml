@@ -1,5 +1,5 @@
 pull_request_rules:
-  - name: Add label after CI passes
+  - name: Add label after CI lint passes
     conditions:
       - check-success=lint
       - check-success=build
@@ -7,4 +7,18 @@ pull_request_rules:
     actions:
       label:
         add:
+          - lint_pass
+  - name: remove label after test
+    conditions:
+      - check-success=macos-basic_tests
+      - check-success=macos-charge_tests
+      - check-success=win-basic_tests
+      - check-success=win-charge_tests
+      - check-success=BasicTests
+      - check-success=AdvancedStandardTests
+      - check-success=AdvancedFullTests
+      - check-success=ChargeTests
+    actions:
+      label:
+        remove:
           - lint_pass

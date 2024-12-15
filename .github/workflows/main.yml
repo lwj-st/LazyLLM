@@ -25,6 +25,16 @@ jobs:
       && !contains(github.event.pull_request.title, '[skip ci]')
     runs-on: tps_sco_nv
     steps:
+      - name: Wait for lint label
+        run: |
+          sleep 300
+
+      - name: Check for required label
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        run: |
+          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
+          exit 1
+          
       - name: Checkout code
         uses: actions/checkout@v4
 

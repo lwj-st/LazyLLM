@@ -24,11 +24,17 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[skip ci]')
       && !contains(github.event.pull_request.title, '[skip ci]')
-      && contains(github.event.pull_request.labels.*.name, 'can_run_test')
     runs-on: macos-13
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check for required label
+        if: github.event_name == 'pull_request_target' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        run: |
+          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
+          exit 1
+          
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
@@ -110,7 +116,14 @@ jobs:
     runs-on: macos-13
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check for required label
+        if: github.event_name == 'pull_request_target' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        run: |
+          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
+          exit 1
+          
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
