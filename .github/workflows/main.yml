@@ -1,12 +1,16 @@
 name: LazyLLM ci
-
 on:
-  workflow_run:
-    workflows:
-      - Lint And Build Package
-    types:
-      - completed
-
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - ".git*"
+      - "docs/assets/**"
 env:
   CI_PATH: '/home/mnt/platform_ci/GitHub/${{ github.repository }}/${GITHUB_RUN_NUMBER}'
 
@@ -16,8 +20,10 @@ concurrency:
 
 jobs:
   Clone:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
-    runs-on: ubuntu-latest
+    if: |
+      !contains(github.event.head_commit.message, '[skip ci]')
+      && !contains(github.event.pull_request.title, '[skip ci]')
+    runs-on: tps_sco_nv
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -118,4 +124,3 @@ jobs:
           mkdir -p $LAZYLLM_HOME
           source ~/ENV/env.sh
           python -m pytest --lf --last-failed-no-failures=all --durations=0 --reruns=2 -v tests/charge_tests
-
