@@ -31,10 +31,14 @@ jobs:
           sleep 360
 
       - name: Check for required label
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        if: github.event_name == 'pull_request'
         run: |
-          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
-          exit 1
+          PR_LABELS=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels" | \
+            jq -r '.[].name')
+          if ! echo "$PR_LABELS" | grep -q 'lint_pass'; then
+            echo "The 'lint_pass' label is missing. Skipping CI/CD process."
+            exit 1
+          fi
           
       - name: Checkout code
         uses: actions/checkout@v4
