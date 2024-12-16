@@ -26,8 +26,9 @@ jobs:
     runs-on: tps_sco_nv
     steps:
       - name: Wait for lint label
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         run: |
-          sleep 300
+          sleep 360
 
       - name: Check for required label
         if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
