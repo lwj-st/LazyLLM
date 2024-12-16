@@ -27,10 +27,19 @@ jobs:
 
     steps:
       - name: Check for required label
-        if: github.event_name == 'pull_request_target' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        if: github.event_name == 'pull_request_target'
         run: |
-          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
-          exit 1
+          brew install jq
+          LABEL=$(curl -s -X GET \
+              -H "Authorization: Bearer ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels" | \
+              jq -r '.[].name' | grep -q 'lint_pass' && echo "true" || echo "false")
+          
+          if [ "$LABEL" == "false" ]; then
+            echo "The 'lint_pass' label is missing. Skipping CI process."
+            exit 1
+          fi
           
       - name: Checkout code
         uses: actions/checkout@v4
@@ -116,10 +125,19 @@ jobs:
 
     steps:
       - name: Check for required label
-        if: github.event_name == 'pull_request_target' && !contains(github.event.pull_request.labels.*.name, 'lint_pass')
+        if: github.event_name == 'pull_request_target'
         run: |
-          echo "The 'lint_pass' label is missing. Skipping CI/CD process."
-          exit 1
+          brew install jq
+          LABEL=$(curl -s -X GET \
+              -H "Authorization: Bearer ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels" | \
+              jq -r '.[].name' | grep -q 'lint_pass' && echo "true" || echo "false")
+          
+          if [ "$LABEL" == "false" ]; then
+            echo "The 'lint_pass' label is missing. Skipping CI process."
+            exit 1
+          fi
           
       - name: Checkout code
         uses: actions/checkout@v4
