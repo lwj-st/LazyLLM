@@ -1,30 +1,24 @@
-name: Add Label on Approve
+name: Remove Labels on PR Update
 
 on:
-  pull_request_review:
-    types:
-      - submitted  
+  pull_request:
+    types: [synchronize]
 
 jobs:
-  add-label-on-approve:
+  remove-labels:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check if Review is Approved
-        if: ${{ github.event.review.state == 'approved' }}
-        run: echo "PR has been approved. Proceeding to add label."
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Add Label to PR
-        if: ${{ github.event.review.state == 'approved' }}
-        uses: actions/github-script@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          script: |
-            const label = "can_run_test";
+          node-version: '14'
 
-            // 给当前 PR 添加标签
-            await github.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              labels: [label],
-            });
+      - name: Remove all labels
+        run: |
+          PR_NUMBER=$(echo $GITHUB_REF | cut -d'/' -f3)
+          gh pr edit $PR_NUMBER --remove-label $(gh pr view $PR_NUMBER --json labels -q '.labels[].name')
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
