@@ -1,16 +1,13 @@
 name: Remove Labels on PR Update
 
 on:
-  pull_request:
+  pull_request_target:
     types: [synchronize]
 
 jobs:
   remove-labels:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -19,6 +16,7 @@ jobs:
       - name: Remove all labels
         run: |
           PR_NUMBER=$(echo $GITHUB_REF | cut -d'/' -f3)
+          echo $PR_NUMBER
           gh pr edit $PR_NUMBER --remove-label $(gh pr view $PR_NUMBER --json labels -q '.labels[].name')
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
