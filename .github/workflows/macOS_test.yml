@@ -29,7 +29,8 @@ jobs:
       - name: Check for required label
         if: github.event_name == 'pull_request_target'
         run: |
-          brew install jq
+          echo " Wait for lint "
+          sleep 60
           LABEL=$(curl -s -X GET \
               -H "Authorization: Bearer ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
