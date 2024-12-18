@@ -15,8 +15,16 @@ jobs:
 
       - name: Remove all labels
         run: |
-          PR_NUMBER=$(echo $GITHUB_REF | cut -d'/' -f3)
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          LABELS=$(gh pr view "$PR_NUMBER" --json labels -q '.labels[].name')
           echo $PR_NUMBER
-          gh pr edit $PR_NUMBER --remove-label $(gh pr view $PR_NUMBER --json labels -q '.labels[].name')
+          echo $LABELS
+          if [ -n "$LABELS" ]; then
+            for label in $LABELS; do
+              gh pr edit "$PR_NUMBER" --remove-label "$label"
+            done
+          else
+            echo "No labels to remove."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
