@@ -23,7 +23,7 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[skip ci]')
       && !contains(github.event.pull_request.title, '[skip ci]')
-    runs-on: windows-latest
+    runs-on: win11--unattended
 
     steps:
       - name: Check for required label
@@ -91,6 +91,7 @@ jobs:
       - name: Download model
         shell: bash
         run: |
+          pip install lazyllm
           pip install modelscope pyyaml
           mkdir C:/Users/runneradmin/.lazyllm
           ls C:/Users/runneradmin/.lazyllm
