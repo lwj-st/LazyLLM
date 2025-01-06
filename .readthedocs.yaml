@@ -12,11 +12,9 @@ build:
       - cp -r docs/assets docs/en
       - python docs/add_docstrings.py
       - python docs/gen_mkdocs_yaml.py
-
 python:
   install:
     - requirements: docs/requirements.txt
 
 mkdocs:
   configuration: mkdocs.yml
-
