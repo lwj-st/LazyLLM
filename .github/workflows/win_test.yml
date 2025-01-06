@@ -75,6 +75,7 @@ jobs:
 
       - name: Download model
         run: |
+          python -m pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org
           pip install --trusted-host pypi.org lazyllm 
           pip install modelscope pyyaml
 
