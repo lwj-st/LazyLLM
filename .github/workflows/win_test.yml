@@ -42,19 +42,6 @@ jobs:
             echo "The 'lint_pass' label is missing. Skipping CI process."
             exit 1
           fi
-      - name: Setup Git
-        run: |
-          $gitVersion = git --version | Select-String -Pattern '\d+\.\d+\.\d+'
-          if ([version]$gitVersion.Matches[0].Value -lt [version]'2.18.0') {
-            choco upgrade git -y
-          }
-          git --version
-          $env:Path += ";C:\Program Files\Git\cmd"    
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
           
       - name: Fetch PR source branch
         shell: bash
