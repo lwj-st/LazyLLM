@@ -74,7 +74,6 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Download model
-        shell: bash
         run: |
           pip install lazyllm
           pip install modelscope pyyaml
