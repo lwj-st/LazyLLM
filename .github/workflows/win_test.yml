@@ -73,15 +73,6 @@ jobs:
           git merge --no-ff pr_branch
           git submodule update --init
           
-      - name: Copy poetry.lock to root directory
-        shell: bash
-        run: |
-          git branch
-          cd LazyLLM-Env && git branch
-          cd ..
-          cp LazyLLM-Env/poetry.lock .
-          ls
-          cat test.txt || echo no
 
       - name: Set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
