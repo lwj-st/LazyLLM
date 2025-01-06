@@ -75,7 +75,7 @@ jobs:
 
       - name: Download model
         run: |
-          pip install lazyllm
+          pip install lazyllm -i https://pypi.tuna.tsinghua.edu.cn/simple
           pip install modelscope pyyaml
 
       - name: Install Poetry
