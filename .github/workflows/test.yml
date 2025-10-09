@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-      - lwj/test_lint
   pull_request:
+      - main
 
 jobs:
   check_changes:
