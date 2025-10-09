@@ -42,9 +42,9 @@ jobs:
       - name: RunTests
         run: |
           if [ "$IF_CHANGED" = "true" ]; then
-            echo $IF_CHANGED
+            echo "目标文件有变化"
           else
-            echo $IF_CHANGED
+            echo "目标文件没有变化"
           fi
 
   
