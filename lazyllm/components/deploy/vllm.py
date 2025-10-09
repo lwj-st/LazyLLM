@@ -4,7 +4,6 @@ import json
 import random
 import importlib.metadata
 from packaging.version import parse
-from typing import Optional
 
 import lazyllm
 from lazyllm import launchers, LazyLLMCMD, ArgsDict, LOG, LazyLLMLaunchersBase
