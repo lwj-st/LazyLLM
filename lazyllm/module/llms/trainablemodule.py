@@ -20,7 +20,7 @@ from ...launcher import LazyLLMLaunchersBase as Launcher
 from .utils import map_kw_for_framework, encode_files, check_config_map_format
 from ...flow import Pipeline
 from ..servermodule import ModuleBase, _UrlHelper, UrlModule
-from ..utils import light_reduce
+
 
 lazyllm.config.add('trainable_module_config_map_path', str, '', 'TRAINABLE_MODULE_CONFIG_MAP_PATH')
 ignore_config_keys = ['log_path', 'launcher']
