@@ -1679,6 +1679,7 @@ class RemoteLauncher(LazyLLMLaunchersBase):
     def __new__(cls, *args, sync=False, ngpus=1, **kwargs):
         return getattr(lazyllm.launchers, lazyllm.config['launcher'])(*args, sync=sync, ngpus=ngpus, **kwargs)
 
+
 def cleanup():
     # empty
     for m in (EmptyLauncher, SlurmLauncher, ScoLauncher, K8sLauncher):
