@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - lwj/test_lint
   pull_request:
     branches:
       - main
