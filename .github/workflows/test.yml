@@ -35,6 +35,9 @@ jobs:
     steps:
       - run: |
           echo "IF_CHANGED=${{ needs.check_changes.outputs.changed }}" >> $GITHUB_ENV
+
+      - name: test
+        run: |
           cat $GITHUB_ENV
           if [ "$IF_CHANGED" = "true" ]; then
             echo "目标文件有变化"
