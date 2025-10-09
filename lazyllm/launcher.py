@@ -1689,7 +1689,7 @@ def cleanup():
                 v.stop()
                 LOG.info(f'killed job:{k}')
     LOG.close()
-    
+
 atexit.register(cleanup)
 
 def _exitf(*args, **kw):
