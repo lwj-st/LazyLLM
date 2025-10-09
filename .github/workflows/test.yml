@@ -34,6 +34,7 @@ jobs:
     needs: check_changes
     steps:
       - run: echo "IF_CHANGED=${{ needs.check_changes.outputs.changed }}" >> $GITHUB_ENV
+             
 
   AdvancedStandardTests:
     runs-on: ubuntu-latest
@@ -41,6 +42,7 @@ jobs:
     steps:
       - name: RunTests
         run: |
+          cat $GITHUB_ENV
           if [ "$IF_CHANGED" = "true" ]; then
             echo "目标文件有变化"
           else
