@@ -6,7 +6,6 @@ import os
 import copy
 import uuid
 import re
-import requests
 import yaml
 from deepdiff import DeepDiff
 
